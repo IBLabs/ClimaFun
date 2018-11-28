@@ -42,6 +42,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: Navitation Related Methods
     
+    @IBAction func unwindToMainViewController(segue: UIStoryboardSegue) { }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // if we are moving to the capital city details view controller set the capital city
         if let controller  = segue.destination as? CapitalCityDetailsViewController {
