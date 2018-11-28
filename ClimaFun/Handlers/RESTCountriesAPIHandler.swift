@@ -28,7 +28,7 @@ class RESTCountriesAPIHandler {
             // make sure we have received a valid JSON response
             if let responseData = response.result.value {
                 
-                // convert the received data to a SwiftJSON JSON object
+                // convert the received data to a SwiftyJSON JSON object
                 let responseJson = JSON(responseData)
                 
                 // make sure the top object is an array of capital cities

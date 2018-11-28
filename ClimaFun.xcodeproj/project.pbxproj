@@ -17,6 +17,9 @@
 		A8FFD94B21AED30A00641A6F /* RESTCountriesAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD94A21AED30A00641A6F /* RESTCountriesAPIHandler.swift */; };
 		A8FFD94D21AED33400641A6F /* CapitalCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD94C21AED33400641A6F /* CapitalCity.swift */; };
 		A8FFD94F21AEDB6300641A6F /* GoogleMapsGeocodingAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD94E21AEDB6300641A6F /* GoogleMapsGeocodingAPIHandler.swift */; };
+		A8FFD95321AEF31500641A6F /* CapitalCityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD95221AEF31500641A6F /* CapitalCityDetailsViewController.swift */; };
+		A8FFD95521AF028700641A6F /* DailyForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD95421AF028700641A6F /* DailyForecast.swift */; };
+		A8FFD95721AF038300641A6F /* ForecastValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD95621AF038300641A6F /* ForecastValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		A8FFD94A21AED30A00641A6F /* RESTCountriesAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTCountriesAPIHandler.swift; sourceTree = "<group>"; };
 		A8FFD94C21AED33400641A6F /* CapitalCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalCity.swift; sourceTree = "<group>"; };
 		A8FFD94E21AEDB6300641A6F /* GoogleMapsGeocodingAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsGeocodingAPIHandler.swift; sourceTree = "<group>"; };
+		A8FFD95221AEF31500641A6F /* CapitalCityDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalCityDetailsViewController.swift; sourceTree = "<group>"; };
+		A8FFD95421AF028700641A6F /* DailyForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecast.swift; sourceTree = "<group>"; };
+		A8FFD95621AF038300641A6F /* ForecastValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastValue.swift; sourceTree = "<group>"; };
 		CDEF76EC75E9F020DBFA1D19 /* Pods_ClimaFun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClimaFun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF02D6D7333248B899DC8B41 /* Pods-ClimaFun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClimaFun.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClimaFun/Pods-ClimaFun.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,18 +92,45 @@
 		A8FFD93521AED15700641A6F /* ClimaFun */ = {
 			isa = PBXGroup;
 			children = (
-				A8FFD93621AED15700641A6F /* AppDelegate.swift */,
-				A8FFD93821AED15700641A6F /* MainViewController.swift */,
+				A8FFD94221AED15800641A6F /* Info.plist */,
+				A8FFD93F21AED15800641A6F /* LaunchScreen.storyboard */,
 				A8FFD93A21AED15700641A6F /* Main.storyboard */,
 				A8FFD93D21AED15800641A6F /* Assets.xcassets */,
-				A8FFD93F21AED15800641A6F /* LaunchScreen.storyboard */,
-				A8FFD94221AED15800641A6F /* Info.plist */,
+				A8FFD93621AED15700641A6F /* AppDelegate.swift */,
+				A8FFD95921AF04FF00641A6F /* View Controllers */,
+				A8FFD95821AF04F600641A6F /* Handlers */,
+				A8FFD95A21AF052400641A6F /* Models */,
+			);
+			path = ClimaFun;
+			sourceTree = "<group>";
+		};
+		A8FFD95821AF04F600641A6F /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
 				A8FFD94821AED2A100641A6F /* ClimacellAPIHandler.swift */,
 				A8FFD94E21AEDB6300641A6F /* GoogleMapsGeocodingAPIHandler.swift */,
 				A8FFD94A21AED30A00641A6F /* RESTCountriesAPIHandler.swift */,
-				A8FFD94C21AED33400641A6F /* CapitalCity.swift */,
 			);
-			path = ClimaFun;
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		A8FFD95921AF04FF00641A6F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A8FFD93821AED15700641A6F /* MainViewController.swift */,
+				A8FFD95221AEF31500641A6F /* CapitalCityDetailsViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A8FFD95A21AF052400641A6F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A8FFD95621AF038300641A6F /* ForecastValue.swift */,
+				A8FFD94C21AED33400641A6F /* CapitalCity.swift */,
+				A8FFD95421AF028700641A6F /* DailyForecast.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,12 +255,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8FFD95721AF038300641A6F /* ForecastValue.swift in Sources */,
+				A8FFD95521AF028700641A6F /* DailyForecast.swift in Sources */,
 				A8FFD93921AED15700641A6F /* MainViewController.swift in Sources */,
 				A8FFD93721AED15700641A6F /* AppDelegate.swift in Sources */,
 				A8FFD94B21AED30A00641A6F /* RESTCountriesAPIHandler.swift in Sources */,
 				A8FFD94F21AEDB6300641A6F /* GoogleMapsGeocodingAPIHandler.swift in Sources */,
 				A8FFD94921AED2A100641A6F /* ClimacellAPIHandler.swift in Sources */,
 				A8FFD94D21AED33400641A6F /* CapitalCity.swift in Sources */,
+				A8FFD95321AEF31500641A6F /* CapitalCityDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

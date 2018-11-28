@@ -72,11 +72,27 @@
                     </view>
                     <connections>
                         <outlet property="capitalCitiesTableView" destination="zaV-pQ-Y8E" id="9fA-2d-jvM"/>
+                        <segue destination="onf-uL-E0l" kind="show" identifier="CapitalCityDetailsSegueIdentifier" id="oXJ-cF-mQQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-218" y="234"/>
+        </scene>
+        <!--Capital City Details View Controller-->
+        <scene sceneID="kc6-ng-YmQ">
+            <objects>
+                <viewController id="onf-uL-E0l" customClass="CapitalCityDetailsViewController" customModule="ClimaFun" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PcG-VW-VNI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="cz3-fQ-BPL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Iw-43-chq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="791" y="233"/>
         </scene>
     </scenes>
 </document>

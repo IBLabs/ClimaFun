@@ -10,16 +10,21 @@ import UIKit
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    
-    
     @IBOutlet weak var capitalCitiesTableView: UITableView!
     
     struct CellIdentifiers {
         static let capitalCityCell = "CapitalCityCellIdentifier"
     }
+    
+    struct SegueIdentifiers {
+        static let capitalCityDetailsSegue = "CapitalCityDetailsSegueIdentifier"
+    }
 
     /** An array to hold the list of capital cities received from the server */
     var capitalCities: [CapitalCity]?
+    
+    /** The capital city selected by the user, used to pass to the details view controller */
+    var selectedCapitalCity: CapitalCity?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +38,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.capitalCitiesTableView.reloadData()
         }
         
+    }
+    
+    // MARK: Navitation Related Methods
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // if we are moving to the capital city details view controller set the capital city
+        if let controller  = segue.destination as? CapitalCityDetailsViewController {
+            controller.capitalCity = selectedCapitalCity!
+        }
     }
     
     // MARK: UITableViewDataSource Methods
@@ -67,13 +81,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // if this is the capital cities table view, get the city's coordinates
         if (tableView == self.capitalCitiesTableView) {
             // get the matching capital city
-            let capitalCity = capitalCities![indexPath.row]
+            selectedCapitalCity = capitalCities![indexPath.row]
             
-            // geocode
-            let geocodingHandler = GoogleMapsGeocodingAPIHandler()
-            geocodingHandler.geocode(address: capitalCity.name) { (lat, lon) in
-                print("coordinates of [\(capitalCity.name)] are [\(lat),\(lon)]")
-            }
+            // move to the capital city details view controller
+            performSegue(withIdentifier: SegueIdentifiers.capitalCityDetailsSegue, sender: nil)
         }
     }
     
