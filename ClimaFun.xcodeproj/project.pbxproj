@@ -7,21 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FB7E341C85DEC6E3C309BF2 /* Pods_ClimaFun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDEF76EC75E9F020DBFA1D19 /* Pods_ClimaFun.framework */; };
 		A8FFD93721AED15700641A6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD93621AED15700641A6F /* AppDelegate.swift */; };
-		A8FFD93921AED15700641A6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD93821AED15700641A6F /* ViewController.swift */; };
+		A8FFD93921AED15700641A6F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD93821AED15700641A6F /* MainViewController.swift */; };
 		A8FFD93C21AED15700641A6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8FFD93A21AED15700641A6F /* Main.storyboard */; };
 		A8FFD93E21AED15800641A6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8FFD93D21AED15800641A6F /* Assets.xcassets */; };
 		A8FFD94121AED15800641A6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8FFD93F21AED15800641A6F /* LaunchScreen.storyboard */; };
+		A8FFD94921AED2A100641A6F /* ClimacellAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD94821AED2A100641A6F /* ClimacellAPIHandler.swift */; };
+		A8FFD94B21AED30A00641A6F /* RESTCountriesAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD94A21AED30A00641A6F /* RESTCountriesAPIHandler.swift */; };
+		A8FFD94D21AED33400641A6F /* CapitalCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD94C21AED33400641A6F /* CapitalCity.swift */; };
+		A8FFD94F21AEDB6300641A6F /* GoogleMapsGeocodingAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD94E21AEDB6300641A6F /* GoogleMapsGeocodingAPIHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		222DCC7B09EE55667F4F2D94 /* Pods-ClimaFun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClimaFun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClimaFun/Pods-ClimaFun.debug.xcconfig"; sourceTree = "<group>"; };
 		A8FFD93321AED15700641A6F /* ClimaFun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClimaFun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8FFD93621AED15700641A6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A8FFD93821AED15700641A6F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A8FFD93821AED15700641A6F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A8FFD93B21AED15700641A6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A8FFD93D21AED15800641A6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8FFD94021AED15800641A6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8FFD94221AED15800641A6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8FFD94821AED2A100641A6F /* ClimacellAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClimacellAPIHandler.swift; sourceTree = "<group>"; };
+		A8FFD94A21AED30A00641A6F /* RESTCountriesAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTCountriesAPIHandler.swift; sourceTree = "<group>"; };
+		A8FFD94C21AED33400641A6F /* CapitalCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalCity.swift; sourceTree = "<group>"; };
+		A8FFD94E21AEDB6300641A6F /* GoogleMapsGeocodingAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsGeocodingAPIHandler.swift; sourceTree = "<group>"; };
+		CDEF76EC75E9F020DBFA1D19 /* Pods_ClimaFun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClimaFun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF02D6D7333248B899DC8B41 /* Pods-ClimaFun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClimaFun.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClimaFun/Pods-ClimaFun.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB7E341C85DEC6E3C309BF2 /* Pods_ClimaFun.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11D487520BAF876C5432D111 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CDEF76EC75E9F020DBFA1D19 /* Pods_ClimaFun.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		173A30C99F8AD9D75C2A49BB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				222DCC7B09EE55667F4F2D94 /* Pods-ClimaFun.debug.xcconfig */,
+				CF02D6D7333248B899DC8B41 /* Pods-ClimaFun.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A8FFD92A21AED15700641A6F = {
 			isa = PBXGroup;
 			children = (
 				A8FFD93521AED15700641A6F /* ClimaFun */,
 				A8FFD93421AED15700641A6F /* Products */,
+				173A30C99F8AD9D75C2A49BB /* Pods */,
+				11D487520BAF876C5432D111 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,11 +87,15 @@
 			isa = PBXGroup;
 			children = (
 				A8FFD93621AED15700641A6F /* AppDelegate.swift */,
-				A8FFD93821AED15700641A6F /* ViewController.swift */,
+				A8FFD93821AED15700641A6F /* MainViewController.swift */,
 				A8FFD93A21AED15700641A6F /* Main.storyboard */,
 				A8FFD93D21AED15800641A6F /* Assets.xcassets */,
 				A8FFD93F21AED15800641A6F /* LaunchScreen.storyboard */,
 				A8FFD94221AED15800641A6F /* Info.plist */,
+				A8FFD94821AED2A100641A6F /* ClimacellAPIHandler.swift */,
+				A8FFD94E21AEDB6300641A6F /* GoogleMapsGeocodingAPIHandler.swift */,
+				A8FFD94A21AED30A00641A6F /* RESTCountriesAPIHandler.swift */,
+				A8FFD94C21AED33400641A6F /* CapitalCity.swift */,
 			);
 			path = ClimaFun;
 			sourceTree = "<group>";
@@ -71,9 +107,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8FFD94521AED15800641A6F /* Build configuration list for PBXNativeTarget "ClimaFun" */;
 			buildPhases = (
+				6F4E3E5A2642D617E0611517 /* [CP] Check Pods Manifest.lock */,
 				A8FFD92F21AED15700641A6F /* Sources */,
 				A8FFD93021AED15700641A6F /* Frameworks */,
 				A8FFD93121AED15700641A6F /* Resources */,
+				9D872AF841D7A421172779DF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,13 +168,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6F4E3E5A2642D617E0611517 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClimaFun-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D872AF841D7A421172779DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ClimaFun/Pods-ClimaFun-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ClimaFun/Pods-ClimaFun-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A8FFD92F21AED15700641A6F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8FFD93921AED15700641A6F /* ViewController.swift in Sources */,
+				A8FFD93921AED15700641A6F /* MainViewController.swift in Sources */,
 				A8FFD93721AED15700641A6F /* AppDelegate.swift in Sources */,
+				A8FFD94B21AED30A00641A6F /* RESTCountriesAPIHandler.swift in Sources */,
+				A8FFD94F21AEDB6300641A6F /* GoogleMapsGeocodingAPIHandler.swift in Sources */,
+				A8FFD94921AED2A100641A6F /* ClimacellAPIHandler.swift in Sources */,
+				A8FFD94D21AED33400641A6F /* CapitalCity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +371,7 @@
 		};
 		A8FFD94621AED15800641A6F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 222DCC7B09EE55667F4F2D94 /* Pods-ClimaFun.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -297,6 +389,7 @@
 		};
 		A8FFD94721AED15800641A6F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF02D6D7333248B899DC8B41 /* Pods-ClimaFun.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
