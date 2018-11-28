@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import MapKit
 
 class ClimacellAPIHandler {
     
@@ -56,13 +57,13 @@ class ClimacellAPIHandler {
         }
     }
     
-    func fetchDailyForecast(lat: Float, lon: Float, completionHandler: @escaping ((_ dailyForecastsArr: [DailyForecast]) -> Void)) {
+    func fetchDailyForecast(coordinate: CLLocationCoordinate2D, completionHandler: @escaping ((_ dailyForecastsArr: [DailyForecast]) -> Void)) {
         
         // configure the parameters for the request
         let parameters: Parameters = [APIParameterKeys.apiKey: API_KEY,
                                       APIParameterKeys.DailyForecast.daysNumber: 5,
-                                      APIParameterKeys.DailyForecast.lat: lat,
-                                      APIParameterKeys.DailyForecast.lon: lon,
+                                      APIParameterKeys.DailyForecast.lat: coordinate.latitude,
+                                      APIParameterKeys.DailyForecast.lon: coordinate.longitude,
                                       APIParameterKeys.DailyForecast.unitSystem: APIParameterValues.UnitSystem.celsius,
                                       APIParameterKeys.DailyForecast.fields: [APIParameterValues.Fields.temperature, APIParameterValues.Fields.precipitation]]
         

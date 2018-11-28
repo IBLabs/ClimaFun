@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import MapKit
 
 class CapitalCityDetailsViewController: UIViewController {
+    
+    @IBOutlet weak var mapView: MKMapView!
     
     var capitalCity: CapitalCity!
 
@@ -17,14 +20,17 @@ class CapitalCityDetailsViewController: UIViewController {
 
         // geocode the capital city's location
         let geocodingHanler = GoogleMapsGeocodingAPIHandler()
-        geocodingHanler.geocode(address: capitalCity.name) { (lat, lon) in
+        geocodingHanler.geocode(address: capitalCity.name) { (coordinate, span) in
             // update the coordinates of the capital city
-            self.capitalCity.lat = lat
-            self.capitalCity.lon = lon
+            self.capitalCity.lat = coordinate.latitude
+            self.capitalCity.lon = coordinate.longitude
+            
+            // show the location on the map
+            self.mapView.setRegion(MKCoordinateRegion(center: coordinate, span: span), animated: true)
             
             // get the forecast for the selected capital city
             let climacellHandler = ClimacellAPIHandler()
-            climacellHandler.fetchDailyForecast(lat: self.capitalCity.lat!, lon: self.capitalCity.lon!) { dailyForecastsArr in
+            climacellHandler.fetchDailyForecast(coordinate: coordinate) { dailyForecastsArr in
                 
                 // print the results
                 for forecast in dailyForecastsArr {

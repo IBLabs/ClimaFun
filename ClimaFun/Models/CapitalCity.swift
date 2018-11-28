@@ -16,12 +16,12 @@ struct CapitalCity {
     let name: String
     
     /** capital city geolocation latitude */
-    var lat: Float?
+    var lat: Double?
     
     /** capital city geolocation longitude */
-    var lon: Float?
+    var lon: Double?
     
-    init(countryName: String, name: String, lat: Float? = nil, lon: Float? = nil) {
+    init(countryName: String, name: String, lat: Double? = nil, lon: Double? = nil) {
         self.countryName = countryName
         self.name = name
         self.lat = lat
