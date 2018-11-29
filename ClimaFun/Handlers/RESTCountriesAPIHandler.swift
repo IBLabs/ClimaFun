@@ -18,6 +18,7 @@ class RESTCountriesAPIHandler {
         static let name = "name"
         static let capital = "capital"
         static let flag = "flag"
+        static let countryCode = "alpha2Code"
     }
     
     func fetchCountries(completionHandler: @escaping (_ capitalCities: [CapitalCity]) -> Void) {
@@ -41,6 +42,7 @@ class RESTCountriesAPIHandler {
                     for countryDict in countriesArr {
                         // create a new capital city
                         let capital = CapitalCity(countryName: countryDict[APIKeys.name].string!,
+                                                  countryCode: countryDict[APIKeys.countryCode].string!,
                                                   name: countryDict[APIKeys.capital].string!)
                         
                         // append it to the array
@@ -51,6 +53,16 @@ class RESTCountriesAPIHandler {
                     completionHandler(capitalCities)
                 }
             }
+        }
+        
+        /**
+         Generates a URL using the received country code
+         
+         - Parameter countryCode: The Alpha 2 code of the country it's flag's URL should be generated.
+         - Returns: A URL object for the country's flag
+         */
+        func generateFlagUrl(countryCode: String) -> URL {
+            return URL(string: "https://www.countryflags.io/\(countryCode)/flat/64.png")!
         }
     }
     

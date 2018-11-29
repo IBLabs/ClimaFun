@@ -12,6 +12,15 @@ struct CapitalCity {
     /** name of the country the capital city belongs to */
     let countryName: String
     
+    /** The Alpha 2 code of the country the capital city belongs to */
+    let countryCode: String
+    
+    var flagUrl: URL? {
+        get {
+            return URL(string: "https://www.countryflags.io/\(countryCode)/flat/64.png")
+        }
+    }
+    
     /** capital city name */
     let name: String
     
@@ -21,8 +30,9 @@ struct CapitalCity {
     /** capital city geolocation longitude */
     var lon: Double?
     
-    init(countryName: String, name: String, lat: Double? = nil, lon: Double? = nil) {
+    init(countryName: String, countryCode: String, name: String, lat: Double? = nil, lon: Double? = nil) {
         self.countryName = countryName
+        self.countryCode = countryCode
         self.name = name
         self.lat = lat
         self.lon = lon

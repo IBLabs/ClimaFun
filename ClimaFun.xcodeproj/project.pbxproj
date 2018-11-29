@@ -20,6 +20,8 @@
 		A8FFD95321AEF31500641A6F /* CapitalCityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD95221AEF31500641A6F /* CapitalCityDetailsViewController.swift */; };
 		A8FFD95521AF028700641A6F /* DailyForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD95421AF028700641A6F /* DailyForecast.swift */; };
 		A8FFD95721AF038300641A6F /* ForecastValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD95621AF038300641A6F /* ForecastValue.swift */; };
+		A8FFD95D21AF4DC400641A6F /* WeatherUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD95C21AF4DC400641A6F /* WeatherUtilities.swift */; };
+		A8FFD95F21AFDCDE00641A6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFD95E21AFDCDE00641A6F /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		A8FFD95221AEF31500641A6F /* CapitalCityDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalCityDetailsViewController.swift; sourceTree = "<group>"; };
 		A8FFD95421AF028700641A6F /* DailyForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecast.swift; sourceTree = "<group>"; };
 		A8FFD95621AF038300641A6F /* ForecastValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastValue.swift; sourceTree = "<group>"; };
+		A8FFD95C21AF4DC400641A6F /* WeatherUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUtilities.swift; sourceTree = "<group>"; };
+		A8FFD95E21AFDCDE00641A6F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CDEF76EC75E9F020DBFA1D19 /* Pods_ClimaFun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClimaFun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF02D6D7333248B899DC8B41 /* Pods-ClimaFun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClimaFun.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClimaFun/Pods-ClimaFun.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +101,7 @@
 				A8FFD93A21AED15700641A6F /* Main.storyboard */,
 				A8FFD93D21AED15800641A6F /* Assets.xcassets */,
 				A8FFD93621AED15700641A6F /* AppDelegate.swift */,
+				A8FFD95C21AF4DC400641A6F /* WeatherUtilities.swift */,
 				A8FFD95921AF04FF00641A6F /* View Controllers */,
 				A8FFD95821AF04F600641A6F /* Handlers */,
 				A8FFD95A21AF052400641A6F /* Models */,
@@ -119,6 +124,7 @@
 			children = (
 				A8FFD93821AED15700641A6F /* MainViewController.swift */,
 				A8FFD95221AEF31500641A6F /* CapitalCityDetailsViewController.swift */,
+				A8FFD95E21AFDCDE00641A6F /* SettingsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -234,6 +240,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ClimaFun/Pods-ClimaFun-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -241,6 +248,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,9 +265,11 @@
 			files = (
 				A8FFD95721AF038300641A6F /* ForecastValue.swift in Sources */,
 				A8FFD95521AF028700641A6F /* DailyForecast.swift in Sources */,
+				A8FFD95F21AFDCDE00641A6F /* SettingsViewController.swift in Sources */,
 				A8FFD93921AED15700641A6F /* MainViewController.swift in Sources */,
 				A8FFD93721AED15700641A6F /* AppDelegate.swift in Sources */,
 				A8FFD94B21AED30A00641A6F /* RESTCountriesAPIHandler.swift in Sources */,
+				A8FFD95D21AF4DC400641A6F /* WeatherUtilities.swift in Sources */,
 				A8FFD94F21AEDB6300641A6F /* GoogleMapsGeocodingAPIHandler.swift in Sources */,
 				A8FFD94921AED2A100641A6F /* ClimacellAPIHandler.swift in Sources */,
 				A8FFD94D21AED33400641A6F /* CapitalCity.swift in Sources */,
@@ -411,7 +421,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NKCD2E3F5G;
 				INFOPLIST_FILE = ClimaFun/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -429,7 +441,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NKCD2E3F5G;
 				INFOPLIST_FILE = ClimaFun/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

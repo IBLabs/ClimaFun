@@ -82,7 +82,7 @@ class ClimacellAPIHandler {
                 if let dailyForecastsJsonArr = responseJson.array {
                     
                     // create an array to hold the generated DailyForecast objects
-                    var dailyForecastsArr: [DailyForecast] = dailyForecastsJsonArr.map({ dailyForecastJson -> DailyForecast in
+                    let dailyForecastsArr: [DailyForecast] = dailyForecastsJsonArr.map({ dailyForecastJson -> DailyForecast in
                         
                         // get the observationTime
                         let observationTimeString = dailyForecastJson[APIKeys.FieldValues.observationTime][APIKeys.FieldValues.value].string ?? "unknown"

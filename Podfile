@@ -8,5 +8,6 @@ target 'ClimaFun' do
   # Pods for ClimaFun
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'SDWebImage'
 
 end
