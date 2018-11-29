@@ -1,7 +1,6 @@
 # ClimaFun
 
 ![alt_text](https://i.ibb.co/021Wprx/screenshot-4.png)
-![alt_text](https://i.ibb.co/6XB6TrH/screenshot-3.png)
 ![alt_text](https://i.ibb.co/YZLsDBB/screenshot-2.png)
 ![alt_text](https://i.ibb.co/564szLc/screenshot-1.png)
 
