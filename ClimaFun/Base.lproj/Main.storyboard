@@ -18,6 +18,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5OL-AD-RgM">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="FOA-WM-Gwp"/>
+                                </connections>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYY-UT-15r">
+                                <rect key="frame" x="155.5" y="571" width="64" height="64"/>
+                                <state key="normal" image="close_button"/>
+                                <connections>
+                                    <action selector="didClickedCloseMapButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uhW-4W-jcL"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zaV-pQ-Y8E">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -104,6 +117,17 @@
                                                 <constraint firstAttribute="height" constant="6" id="wge-r3-OXL"/>
                                             </constraints>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KQ-p9-AKD">
+                                            <rect key="frame" x="319" y="0.0" width="56" height="56"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="6KQ-p9-AKD" secondAttribute="height" multiplier="1:1" id="FTe-QO-LMa"/>
+                                                <constraint firstAttribute="width" constant="56" id="TmO-Vc-9ZG"/>
+                                            </constraints>
+                                            <state key="normal" image="map_button"/>
+                                            <connections>
+                                                <action selector="didClickedMapButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8C9-xw-Phy"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -115,10 +139,12 @@
                                         <constraint firstItem="l6t-3z-6pP" firstAttribute="centerY" secondItem="Mgp-IL-KFh" secondAttribute="centerY" id="SvA-kA-zJP"/>
                                         <constraint firstItem="c4c-2H-4d6" firstAttribute="top" secondItem="p5q-u2-3YI" secondAttribute="bottom" constant="4" id="THj-Te-Dhp"/>
                                         <constraint firstAttribute="bottom" secondItem="CfV-iA-LNG" secondAttribute="bottom" id="Tga-vA-oSC"/>
+                                        <constraint firstAttribute="trailing" secondItem="6KQ-p9-AKD" secondAttribute="trailing" id="X7Q-hx-0hZ"/>
                                         <constraint firstAttribute="bottom" secondItem="dlL-hH-vYQ" secondAttribute="bottom" constant="6" id="Z3n-QJ-7r2"/>
                                         <constraint firstItem="xX6-6H-Dwh" firstAttribute="top" secondItem="aOk-j0-gFh" secondAttribute="top" id="a6v-j6-q2E"/>
                                         <constraint firstItem="E1Y-mS-yaI" firstAttribute="top" secondItem="Mgp-IL-KFh" secondAttribute="bottom" id="cqA-FX-bTu"/>
                                         <constraint firstAttribute="trailing" secondItem="dlL-hH-vYQ" secondAttribute="trailing" id="f3J-8Y-sEM"/>
+                                        <constraint firstItem="6KQ-p9-AKD" firstAttribute="top" secondItem="aOk-j0-gFh" secondAttribute="top" id="h1R-ZR-sAS"/>
                                         <constraint firstAttribute="trailing" secondItem="Mgp-IL-KFh" secondAttribute="trailing" constant="16" id="mIM-wW-ZTh"/>
                                         <constraint firstItem="Mgp-IL-KFh" firstAttribute="leading" secondItem="aOk-j0-gFh" secondAttribute="leading" constant="16" id="me8-xg-zzb"/>
                                         <constraint firstAttribute="trailing" secondItem="l6t-3z-6pP" secondAttribute="trailing" constant="16" id="rxA-8V-RgU"/>
@@ -268,10 +294,16 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="zaV-pQ-Y8E" secondAttribute="bottom" id="27m-3d-h3P"/>
+                            <constraint firstItem="yYY-UT-15r" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6TK-ds-nhs"/>
                             <constraint firstItem="rf4-IT-OI4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="F0M-E4-1wb"/>
                             <constraint firstAttribute="bottom" secondItem="rf4-IT-OI4" secondAttribute="bottom" id="N7T-HE-khe"/>
+                            <constraint firstItem="5OL-AD-RgM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NB7-gh-4s0"/>
+                            <constraint firstAttribute="trailing" secondItem="5OL-AD-RgM" secondAttribute="trailing" id="SEj-0c-dyQ"/>
+                            <constraint firstAttribute="bottom" secondItem="5OL-AD-RgM" secondAttribute="bottom" id="SlR-re-l94"/>
                             <constraint firstItem="zaV-pQ-Y8E" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="h4q-6d-bUH"/>
                             <constraint firstAttribute="trailing" secondItem="rf4-IT-OI4" secondAttribute="trailing" id="n2t-sx-m19"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yYY-UT-15r" secondAttribute="bottom" constant="32" id="net-Cb-lxR"/>
+                            <constraint firstItem="5OL-AD-RgM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="saZ-zc-GwG"/>
                             <constraint firstAttribute="trailing" secondItem="zaV-pQ-Y8E" secondAttribute="trailing" id="sam-eT-chd"/>
                             <constraint firstItem="rf4-IT-OI4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="54" id="wBK-P5-yDZ"/>
                             <constraint firstItem="zaV-pQ-Y8E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yoP-Jz-SNV"/>
@@ -280,6 +312,8 @@
                     </view>
                     <connections>
                         <outlet property="capitalCitiesTableView" destination="zaV-pQ-Y8E" id="9fA-2d-jvM"/>
+                        <outlet property="closeMapButton" destination="yYY-UT-15r" id="QWW-yh-tiz"/>
+                        <outlet property="mapView" destination="5OL-AD-RgM" id="9py-Ab-KxI"/>
                         <outlet property="searchBarTrailingConstraint" destination="mIM-wW-ZTh" id="gp4-0n-ZLs"/>
                         <outlet property="searchResultsContainerView" destination="rf4-IT-OI4" id="hMu-Bn-i0Z"/>
                         <outlet property="searchResultsTableView" destination="agA-uS-9tm" id="NXY-GP-jBt"/>
@@ -642,6 +676,7 @@
     <resources>
         <image name="close_button" width="64" height="64"/>
         <image name="main_menu_illustration" width="583" height="306"/>
+        <image name="map_button" width="26" height="21"/>
         <image name="settings_button" width="24" height="24"/>
     </resources>
 </document>

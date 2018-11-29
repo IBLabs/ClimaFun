@@ -53,7 +53,7 @@ class CapitalCityDetailsViewController: UIViewController, UITableViewDataSource,
             self.capitalCity.lon = coordinate.longitude
             
             // show the location on the map
-            self.mapView.setRegion(MKCoordinateRegion(center: coordinate, span: span), animated: true)
+            self.mapView.setRegion(MKCoordinateRegion(center: coordinate, span: span), animated: false)
             
             // get the forecast for the selected capital city
             let climacellHandler = ClimacellAPIHandler()

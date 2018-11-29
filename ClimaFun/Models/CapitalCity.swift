@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 struct CapitalCity {
     /** name of the country the capital city belongs to */
@@ -31,11 +32,25 @@ struct CapitalCity {
     /** capital city geolocation longitude */
     var lon: Double?
     
-    init(countryName: String, countryCode: String, name: String, lat: Double? = nil, lon: Double? = nil) {
+    /** Coordinate of the north east bound of the capital's region */
+    var northEastBoundCoordinate: CLLocationCoordinate2D?
+    
+    /** Coordinate of the south west bound of the capital's region */
+    var southWestBoundCoordinate: CLLocationCoordinate2D?
+    
+    init(countryName: String,
+         countryCode: String,
+         name: String,
+         lat: Double? = nil,
+         lon: Double? = nil,
+         northEastBoundCoordinate: CLLocationCoordinate2D? = nil,
+         southWestBoundCoordinate: CLLocationCoordinate2D? = nil) {
         self.countryName = countryName
         self.countryCode = countryCode
         self.name = name
         self.lat = lat
         self.lon = lon
+        self.northEastBoundCoordinate = northEastBoundCoordinate
+        self.southWestBoundCoordinate = southWestBoundCoordinate
     }
 }

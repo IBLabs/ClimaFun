@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import MapKit
 import SDWebImage
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate {
     
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var closeMapButton:UIButton!
     @IBOutlet weak var capitalCitiesTableView: UITableView!
     @IBOutlet weak var searchResultsTableView: UITableView!
     @IBOutlet weak var settingsButton: UIButton!
@@ -28,6 +31,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         static let settingsSegue = "SettingsSegueIdentifier"
     }
     
+    struct AnnotationViewIdentifiers {
+        static let capitalCityAnnotationIdentidier = "CapitalCityAnnotationIdentidier"
+    }
+    
     struct UIConstants {
         static let initialSearchBarTrailingConstraintConstant: CGFloat = 16
         static let activeSearchBarTrailingConstraintConstant: CGFloat = 72
@@ -38,6 +45,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     /** An array that holds the search results */
     var searchResults: [CapitalCity] = []
+    
+    /** An array of map annotations used to annotate the map */
+    var annotations: [MKPointAnnotation]!
     
     /** The capital city selected by the user, used to pass to the details view controller */
     var selectedCapitalCity: CapitalCity?
@@ -56,13 +66,45 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // create a handler for the REST Countries API
         let countriesHandler = RESTCountriesAPIHandler()
-        countriesHandler.fetchCountries { capitalCities in
+        countriesHandler.fetchLocalCountries { (capitalCities) in
+            // keep the parsed capital cities
+            self.capitalCities = capitalCities
             
+            // reload the data in the tableview
+            self.capitalCitiesTableView.reloadData()
+            
+            // convert the received array to an array of annotations
+            annotations = capitalCities.map({ (capitalCity) -> MKPointAnnotation in
+                // create an annotation
+                let annotation = MKPointAnnotation()
+                annotation.title = capitalCity.name
+                annotation.subtitle = capitalCity.countryName
+                annotation.coordinate = CLLocationCoordinate2D(latitude: capitalCity.lat!, longitude: capitalCity.lon!)
+                
+                return annotation
+            })
+            
+            // add the created annotations to the map
+            mapView.addAnnotations(annotations)
+        }
+        
+        /*
+        countriesHandler.fetchCountries { capitalCities in
             // keep the received array and reload the table
             self.capitalCities = capitalCities
             self.capitalCitiesTableView.reloadData()
         }
+         */
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // position the map view off-screen so we can animate it in
+        let rootViewHeight = view.bounds.height
+        mapView.transform = CGAffineTransform.init(translationX: 0, y: -rootViewHeight)
+        closeMapButton.transform = CGAffineTransform.init(translationX: 0, y: rootViewHeight)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -153,6 +195,30 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // clear the search results and reload the tableview
         searchResults = []
         searchResultsTableView.reloadData()
+    }
+    
+    @IBAction func didClickedMapButton(sender: UIButton) {
+        // get the height of the root view so we can animat based on it
+        let rootViewHeight = view.bounds.height
+        
+        // animate the map view in
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .allowUserInteraction, animations: {
+            self.mapView.transform = CGAffineTransform.identity
+            self.closeMapButton.transform = CGAffineTransform.identity
+            self.capitalCitiesTableView.transform = CGAffineTransform.init(translationX: 0, y: rootViewHeight)
+        }, completion: nil)
+    }
+    
+    @IBAction func didClickedCloseMapButton(sender: UIButton) {
+        // get the height of the root view so we can animat based on it
+        let rootViewHeight = view.bounds.height
+        
+        // animate the map view out
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .allowUserInteraction, animations: {
+            self.closeMapButton.transform = CGAffineTransform.init(translationX: 0, y: rootViewHeight)
+            self.mapView.transform = CGAffineTransform.init(translationX: 0, y: -rootViewHeight)
+            self.capitalCitiesTableView.transform = CGAffineTransform.identity
+        }, completion: nil)
     }
     
     func dismissCapitalCityDetailsViewController() {
@@ -261,6 +327,49 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         return UITableView.automaticDimension
+    }
+    
+    // MARK: MKMapViewDelegate Methods
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // make sure the annotation is a point annotation
+        guard let pointAnnotation = annotation as? MKPointAnnotation else {
+            return nil
+        }
+        
+        // get the annotation's index
+        let index = annotations.firstIndex { $0 == pointAnnotation} ?? -1
+        
+        // deqeueue an annotation
+        if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationViewIdentifiers.capitalCityAnnotationIdentidier) {
+            // configure the button with the new annotation
+            annotationView.rightCalloutAccessoryView?.tag = index
+            
+            return annotationView
+        } else {
+            // create a new one
+            let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: AnnotationViewIdentifiers.capitalCityAnnotationIdentidier)
+            pinAnnotationView.canShowCallout = true
+            
+            // create the accessory button
+            let button = UIButton(type: .detailDisclosure)
+            button.tag = index
+            button.addTarget(self, action: #selector(didClickedPointAnnotationView(sender:)), for: .touchUpInside)
+            pinAnnotationView.rightCalloutAccessoryView = button
+            
+            return pinAnnotationView
+        }
+    }
+    
+    @objc func didClickedPointAnnotationView(sender: UIButton) {
+        // get the selected capital city
+        selectedCapitalCity = capitalCities![sender.tag]
+        
+        // call for a status bar update
+        isPresentingCapitalCity = true
+        
+        // move to the capital city details view controller
+        performSegue(withIdentifier: SegueIdentifiers.capitalCityDetailsSegue, sender: nil)
     }
     
 }
