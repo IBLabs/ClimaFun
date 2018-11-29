@@ -15,6 +15,7 @@ struct CapitalCity {
     /** The Alpha 2 code of the country the capital city belongs to */
     let countryCode: String
     
+    /** URL of the country's flag */
     var flagUrl: URL? {
         get {
             return URL(string: "https://www.countryflags.io/\(countryCode)/flat/64.png")

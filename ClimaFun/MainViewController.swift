@@ -12,9 +12,12 @@ import SDWebImage
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var capitalCitiesTableView: UITableView!
-    @IBOutlet weak var selectedUnitSwitch: UISwitch!
+    @IBOutlet weak var searchResultsTableView: UITableView!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var searchResultsContainerView: UIView!
+    @IBOutlet weak var searchTextField: UITextField!
+    
+    @IBOutlet weak var searchBarTrailingConstraint: NSLayoutConstraint!
     
     struct CellIdentifiers {
         static let capitalCityCell = "CapitalCityCellIdentifier"
@@ -24,9 +27,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         static let capitalCityDetailsSegue = "CapitalCityDetailsSegueIdentifier"
         static let settingsSegue = "SettingsSegueIdentifier"
     }
+    
+    struct UIConstants {
+        static let initialSearchBarTrailingConstraintConstant: CGFloat = 16
+        static let activeSearchBarTrailingConstraintConstant: CGFloat = 72
+    }
 
     /** An array to hold the list of capital cities received from the server */
     var capitalCities: [CapitalCity]?
+    
+    /** An array that holds the search results */
+    var searchResults: [CapitalCity] = []
     
     /** The capital city selected by the user, used to pass to the details view controller */
     var selectedCapitalCity: CapitalCity?
@@ -77,10 +88,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func didBeginEditingSearchTextField(sender: UITextField) {
+        // show the cancel button
+        self.searchBarTrailingConstraint.constant = UIConstants.activeSearchBarTrailingConstraintConstant
+        
         // animate the scroll of the table view
         UIView.animate(withDuration: 0.2) {
             // scroll to the search bar
             self.capitalCitiesTableView.setContentOffset(CGPoint(x: 0, y: 88), animated: false)
+            self.view.layoutIfNeeded()
         }
         
         // animate the entry of the overlay view
@@ -88,6 +103,56 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             // show the overlay
             self.searchResultsContainerView.alpha = 1
         }
+    }
+    
+    @IBAction func didChangeSearchTextField(sender: UITextField) {
+        // make sure we have some capital cities to filter from
+        guard let capitalCities = self.capitalCities else {
+            return
+        }
+        
+        // get the search text
+        let searchText = sender.text!
+        
+        if (searchText.isEmpty) {
+            // if the term is empty, results are empty as well
+            searchResults = []
+        } else {
+            // filter the capital cities array
+            searchResults = capitalCities.filter({ (capitalCity) -> Bool in
+                return (capitalCity.countryName.lowercased().contains(searchText)
+                    || capitalCity.name.lowercased().contains(searchText))
+            })
+        }
+        
+        // reload the table view
+        searchResultsTableView.reloadData()
+    }
+    
+    @IBAction func didClickedCancelSearchButton(sender: UIButton) {
+        // restore the search bar to it's original size
+        searchBarTrailingConstraint.constant = UIConstants.initialSearchBarTrailingConstraintConstant
+        
+        // animate
+        UIView.animate(withDuration: 0.4) {
+            // scroll to the top
+            self.capitalCitiesTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+            self.view.layoutIfNeeded()
+        }
+        
+        // animate the exit of the overlay view
+        UIView.animate(withDuration: 0.2) {
+            // hide the overlay
+            self.searchResultsContainerView.alpha = 0
+        }
+        
+        // dismiss the keyboard and clear the text field
+        searchTextField.text = ""
+        searchTextField.resignFirstResponder()
+        
+        // clear the search results and reload the tableview
+        searchResults = []
+        searchResultsTableView.reloadData()
     }
     
     func dismissCapitalCityDetailsViewController() {
@@ -135,7 +200,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return capitalCities?.count ?? 0
+        if (tableView == capitalCitiesTableView) {
+            return capitalCities?.count ?? 0
+        } else if (tableView == searchResultsTableView) {
+            return searchResults.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -146,7 +217,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let capitalCityCell = cell as? CapitalCityTableViewCell {
             
             // get the matching capital city object
-            let capitalCity = capitalCities![indexPath.row]
+            var capitalCity: CapitalCity!
+            if (tableView == capitalCitiesTableView) {
+                capitalCity = capitalCities![indexPath.row]
+            } else if (tableView == searchResultsTableView) {
+                capitalCity = searchResults[indexPath.row]
+            } else {
+                capitalCity = CapitalCity(countryName: "unknown", countryCode: "xx", name: "unknown")
+            }
+            
+            // set the information on the cell
             capitalCityCell.countryNameLabel.text = capitalCity.countryName
             capitalCityCell.capitalCityNameLabel.text = capitalCity.name.isEmpty ? "-" : capitalCity.name
             capitalCityCell.flagImageView.sd_setImage(with: capitalCity.flagUrl!, completed: nil)
@@ -158,22 +238,25 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: UITableViewDelegate Methods
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // if this is the capital cities table view, get the city's coordinates
-        if (tableView == self.capitalCitiesTableView) {
-            // get the matching capital city
+        // get the matching capital city object
+        if (tableView == capitalCitiesTableView) {
             selectedCapitalCity = capitalCities![indexPath.row]
-            
-            // call for a status bar update
-            isPresentingCapitalCity = true
-            
-            // move to the capital city details view controller
-            performSegue(withIdentifier: SegueIdentifiers.capitalCityDetailsSegue, sender: nil)
+        } else if (tableView == searchResultsTableView) {
+            selectedCapitalCity = searchResults[indexPath.row]
+        } else {
+            selectedCapitalCity = CapitalCity(countryName: "unknown", countryCode: "xx", name: "unknown")
         }
+        
+        // call for a status bar update
+        isPresentingCapitalCity = true
+        
+        // move to the capital city details view controller
+        performSegue(withIdentifier: SegueIdentifiers.capitalCityDetailsSegue, sender: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // if this is the capital cities table view return it's cells' height
-        if (tableView == self.capitalCitiesTableView) {
+        if (tableView == self.capitalCitiesTableView || tableView == self.searchResultsTableView) {
             return CapitalCityTableViewCell.Constants.height
         }
         
