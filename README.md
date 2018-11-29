@@ -1,6 +1,9 @@
 # ClimaFun
 
 ![alt text](https://i.ibb.co/sWQYqNN/screenshot-climafun.png)
+![alt text](https://i.ibb.co/GkbSTqY/screenshot-2.png)
+![alt text](https://i.ibb.co/FHN1dTc/screenshot-3.png)
+![alt text](https://i.ibb.co/LYnYFy5/screenshot-4.png)
 
 A simple iOS client that uses Climacell's weather forecast API to show the the current weather in all of the world's capital cities!
 
