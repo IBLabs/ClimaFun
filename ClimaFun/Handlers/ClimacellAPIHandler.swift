@@ -13,6 +13,7 @@ import MapKit
 
 class ClimacellAPIHandler {
     
+    /** The API key used to access Climacell's weather API */
     let API_KEY = "mFW54hIC4r5puNkKBrcfQ3Xy3dqFYXCJ"
     
     struct APIURLs {
@@ -57,6 +58,12 @@ class ClimacellAPIHandler {
         }
     }
     
+    /**
+     Uses the Climacell Weather API to fetch the weather forecast for the next 5 days in the specified coordinate.
+     
+     - Parameter coordinate: The coordinate in which weather should be observed.
+     - Parameter completionHandler: A closure that will be run when fetching is complete.
+     */
     func fetchDailyForecast(coordinate: CLLocationCoordinate2D, completionHandler: @escaping ((_ dailyForecastsArr: [DailyForecast]) -> Void)) {
         
         // configure the parameters for the request

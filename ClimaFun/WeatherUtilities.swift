@@ -59,6 +59,12 @@ class WeatherUtilities {
         }
     }
     
+    /**
+     Returns a string that describes the received temperature forecast value.
+     
+     - Parameter tempValue: A ForecastValue used to create the temperature string.
+     - Returns: A string that describes the minimum and maximum temperature separated by '~'.
+     */
     static func stringForTemperature(tempValue: ForecastValue) -> String {
         // get the selected unit sign
         let sign = WeatherUtilities.selectedUnitSign()
@@ -76,6 +82,13 @@ class WeatherUtilities {
         return "\(tempMin)\(sign)~\(tempMax)\(sign)"
     }
     
+    /**
+     Returns a string that describes the received precipitation forecast value.
+     
+     - Parameter pcpnValue: The precipitation value used to create the string.
+     - Parameter addUnit: Sets whether a unit string should be appended at the end of the returned string.
+     - Returns: A string the describes the received precipitation value, either followed by a unit string or not.
+     */
     static func stringForPcpn(pcpnValue: ForecastValue, addUnit: Bool) -> String {
         // get the max precipitation value
         let pcpnMax = Int(pcpnValue.max ?? 0)

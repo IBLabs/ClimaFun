@@ -34,10 +34,15 @@ class SettingsViewController: UIViewController {
     
     // MARK: User Interface Methods
     
+    /**
+     Initializes controllers and UI based on the user's saved configuration.
+     */
     func initializeUI() {
         // set the state of the unit switch based on the saved state
         selectedUnitSwitch.setOn(WeatherUtilities.shouldUseFahrenheit(), animated: false)
     }
+    
+    // MARK: User Interaction Methods
     
     @IBAction func didClickedCloseButton(sender: UIButton) {
         // perform the exit animation
@@ -57,11 +62,17 @@ class SettingsViewController: UIViewController {
     
     // MARK: Animation Methods
     
+    /**
+     Prepares the views in the screen for the entry animation, hiding and positioning the required views.
+     */
     func prepareForEntryAnimation() {
         overlayButton.alpha = 0
         self.cardView.alpha = 0
     }
     
+    /**
+     Perform the screen's entry animation.
+     */
     func performEntryAnimation() {
         // get the height of the root view so we can animate based on it
         let rootViewHeight = view.bounds.height
@@ -77,6 +88,11 @@ class SettingsViewController: UIViewController {
         }, completion: nil)
     }
     
+    /**
+     Performs the screen exit animation.
+     
+     - Parameter completionHandler: A closure that will be run when the animation is complete.
+     */
     func performExitAnimation(completionHandler: @escaping (() -> Void)) {
         // get the height of the root view so we can animate based on it
         let rootViewHeight = view.bounds.height

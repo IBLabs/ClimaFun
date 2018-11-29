@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Represents a daily forecast for a specific day, received from Climacell's weather forecast API.
+ */
 struct DailyForecast {
     /** The temperature value of the forecast */
     let temperature: ForecastValue

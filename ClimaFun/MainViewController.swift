@@ -19,7 +19,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var searchResultsContainerView: UIView!
     @IBOutlet weak var searchTextField: UITextField!
-    
     @IBOutlet weak var searchBarTrailingConstraint: NSLayoutConstraint!
     
     struct CellIdentifiers {
@@ -60,9 +59,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // initialize the UI
-        initializeUI()
         
         // create a handler for the REST Countries API
         let countriesHandler = RESTCountriesAPIHandler()
@@ -115,7 +111,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return .fade
     }
     
-    // MARK: User Interface Methods
+    // MARK: User Interaction Methods
     
     @IBAction func didClickedSettingsButton(sender: UIButton) {
         // give a subtle animation to the settings button
@@ -221,6 +217,22 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }, completion: nil)
     }
     
+    @objc func didClickedPointAnnotationView(sender: UIButton) {
+        // get the selected capital city
+        selectedCapitalCity = capitalCities![sender.tag]
+        
+        // call for a status bar update
+        isPresentingCapitalCity = true
+        
+        // move to the capital city details view controller
+        performSegue(withIdentifier: SegueIdentifiers.capitalCityDetailsSegue, sender: nil)
+    }
+    
+    // MARK: User Interface Methods
+    
+    /**
+     Dismisses the capital city details view controller, updateing the status bar's color.
+     */
     func dismissCapitalCityDetailsViewController() {
         // dismiss the view controller
         dismiss(animated: false, completion: nil)
@@ -232,6 +244,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         setNeedsStatusBarAppearanceUpdate()
     }
     
+    /**
+     Dismisses the settings view controller, updating the status bar's color.
+     */
     func dismissSettingsViewController() {
         // dismiss the view controller
         dismiss(animated: false, completion: nil)
@@ -243,14 +258,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    func initializeUI() {
-        // prepare for transparent transitions
-        self.modalPresentationStyle = .currentContext
-    }
-    
     // MARK: Navitation Related Methods
-    
-    @IBAction func unwindToMainViewController(segue: UIStoryboardSegue) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // if we are moving to the capital city details view controller set the capital city
@@ -360,22 +368,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return pinAnnotationView
         }
     }
-    
-    @objc func didClickedPointAnnotationView(sender: UIButton) {
-        // get the selected capital city
-        selectedCapitalCity = capitalCities![sender.tag]
-        
-        // call for a status bar update
-        isPresentingCapitalCity = true
-        
-        // move to the capital city details view controller
-        performSegue(withIdentifier: SegueIdentifiers.capitalCityDetailsSegue, sender: nil)
-    }
-    
 }
 
 class CapitalCityTableViewCell: UITableViewCell {
-    
     struct Constants {
         static let height: CGFloat = 88
     }
@@ -383,6 +378,5 @@ class CapitalCityTableViewCell: UITableViewCell {
     @IBOutlet weak var countryNameLabel: UILabel!
     @IBOutlet weak var capitalCityNameLabel: UILabel!
     @IBOutlet weak var flagImageView: UIImageView!
-    
 }
 

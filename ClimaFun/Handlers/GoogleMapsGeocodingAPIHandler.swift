@@ -13,7 +13,10 @@ import MapKit
 
 class GoogleMapsGeocodingAPIHandler {
     
+    /** The API key used to access Google's Geocoding API */
     let API_KEY = "AIzaSyDgyhwD5JUg2LqqbV0nuwndEWkkzcEICmg"
+    
+    /** Google's Geocoding API base URL address */
     let BASE_URL = "https://maps.googleapis.com/maps/api/geocode/json"
     
     struct APIKeys {
@@ -35,6 +38,12 @@ class GoogleMapsGeocodingAPIHandler {
         }
     }
     
+    /**
+     Uses Google's Geocoding API to geocode (find the coordinates and viewport) of the specified string address
+     
+     - Parameter address: The string address that should be geocoded.
+     - Parameter completionHandler: A closure that will be run when the geocoding process is finished.
+     */
     func geocode(address: String, completionHandler: @escaping ((_ coordinate: CLLocationCoordinate2D, _ span: MKCoordinateSpan) -> Void)) {
         
         // create the request's parameters

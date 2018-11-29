@@ -23,9 +23,13 @@ class CapitalCityDetailsViewController: UIViewController, UITableViewDataSource,
     @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var blurView: UIVisualEffectView!
     
+    /** The capital city currently being presneted */
     var capitalCity: CapitalCity!
+    
+    /** An array of DailyForecast objects that holds the forecst information for the upcoming days */
     var dailyForecastsArr: [DailyForecast]?
     
+    /** A date formatter used to present the day of the week related to a certain Date objet */
     var dayOfWeekDateFormatter: DateFormatter?
     
     struct CellIdentifiers {
@@ -79,6 +83,9 @@ class CapitalCityDetailsViewController: UIViewController, UITableViewDataSource,
     
     // MARK: Animation Methods
     
+    /**
+     Initializes the view for the entry animation by hiding and positioning the required views.
+     */
     func prepareForEntryAnimation() {
         self.blurView.alpha = 0
         self.overlayView.alpha = 0
@@ -86,6 +93,10 @@ class CapitalCityDetailsViewController: UIViewController, UITableViewDataSource,
         self.closeButton.alpha = 0
     }
     
+    /**
+     Performs the entry animation of the screen, make sure prepareForEntryAnimation() was called
+     before running this method.
+     */
     func performEntryAnimation() {
         // get the root view height so we can position other views
         let rootViewHeight = view.bounds.height
@@ -110,6 +121,10 @@ class CapitalCityDetailsViewController: UIViewController, UITableViewDataSource,
         })
     }
     
+    /**
+     Performs the exit animation of the screen.
+     - Parameter completionHandler: A closure that will be run when the animation is complete.
+     */
     func performExitAnimation(completionHandler: @escaping (() -> Void)) {
         // get the root view height so we can position other views
         let rootViewHeight = view.bounds.height
@@ -125,7 +140,7 @@ class CapitalCityDetailsViewController: UIViewController, UITableViewDataSource,
         }
     }
     
-    // MARK: User Interface Methods
+    // MARK: User Interaction Methods
     
     @IBAction func didClickedCloseButton(sender: UIButton) {
         performExitAnimation {
@@ -135,6 +150,11 @@ class CapitalCityDetailsViewController: UIViewController, UITableViewDataSource,
         }
     }
     
+    // MARK: User Interface Methods
+    
+    /**
+     Initializes the UI of the screen using whatever information that is available when the screen loads.
+     */
     func initializeUI() {
         self.countryLabel.text = capitalCity.countryName
         self.capitalCityLabel.text = capitalCity.name.isEmpty ? "-" : capitalCity.name
@@ -143,6 +163,9 @@ class CapitalCityDetailsViewController: UIViewController, UITableViewDataSource,
         self.todayPcpnLabel.text = "-"
     }
     
+    /**
+     Lazily creates the 'Day of Week' date formatter and sets it's date format.
+     */
     func initializeDayOfWeekDateFormatter() {
         // create the date formatter
         let dateFormatter = DateFormatter()
@@ -150,6 +173,9 @@ class CapitalCityDetailsViewController: UIViewController, UITableViewDataSource,
         dayOfWeekDateFormatter = dateFormatter
     }
     
+    /**
+     Updates the 'Today' part of the screen to show whatever most relevant information that is currently available.
+     */
     func updateTodayUI() {
         // get the forecast of today
         let todayForecast = dailyForecastsArr!.first

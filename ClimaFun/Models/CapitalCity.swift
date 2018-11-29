@@ -9,6 +9,10 @@
 import Foundation
 import MapKit
 
+/**
+ Represents a capital city received through combining informatio from the REST Countries API and Google's
+ Geocoding API.
+ */
 struct CapitalCity {
     /** name of the country the capital city belongs to */
     let countryName: String

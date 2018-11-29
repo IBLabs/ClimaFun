@@ -13,6 +13,7 @@ import SwiftyJSON
 
 class RESTCountriesAPIHandler {
     
+    /** The base URL of the REST Countries API used to fetch information about the world's capital cities */
     let BASE_URL = "https://restcountries.eu/rest/v2/all"
     
     struct APIKeys {
@@ -37,6 +38,11 @@ class RESTCountriesAPIHandler {
         }
     }
     
+    /**
+     Fetches information from the local prefetched countries JSON file so we can display everyting on a map.
+     
+     - Parameter completionHandler: A closure that will be run when the fetching is finished.
+     */
     func fetchLocalCountries(completionHandler: ((_ capitalCities: [CapitalCity]) -> Void)) {
         // make sure we have a file
         guard let path = Bundle.main.path(forResource: "capital_city_information", ofType: "json") else {
@@ -100,6 +106,11 @@ class RESTCountriesAPIHandler {
         
     }
     
+    /**
+     Fetches country and capital cities information for the REST Countries API.
+     
+     - Parameter completionHandler: A closure that will be run when the information fetching is finished.
+     */
     func fetchCountries(completionHandler: @escaping (_ capitalCities: [CapitalCity]) -> Void) {
         Alamofire.request(BASE_URL).responseJSON { response in
             // log the response serialization result
@@ -133,16 +144,5 @@ class RESTCountriesAPIHandler {
                 }
             }
         }
-        
-        /**
-         Generates a URL using the received country code
-         
-         - Parameter countryCode: The Alpha 2 code of the country it's flag's URL should be generated.
-         - Returns: A URL object for the country's flag
-         */
-        func generateFlagUrl(countryCode: String) -> URL {
-            return URL(string: "https://www.countryflags.io/\(countryCode)/flat/64.png")!
-        }
     }
-    
 }
